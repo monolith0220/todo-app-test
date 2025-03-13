@@ -1,5 +1,34 @@
-# Vue 3 + TypeScript + Vite
+# Todo アプリの追加機能
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+以下の機能を追加しました。
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+- **テキストを入力してリストに追加する機能**
+- **入力したテキストのリスト表示エリア**
+- **リストアイテムを一つ削除するボタン**
+- **リストアイテムを任意の数選択できる機能**
+- **選択したアイテムを一括削除するボタン**
+- **リストアイテム全削除ボタン**
+- **ブラウザから `http://localhost:18080` でアクセスできる**
+- **リロードした際に、リストの内容が保存されたまま表示できる**
+
+---
+
+## プロジェクトのセットアップ
+
+```sh
+# 依存関係のインストール
+npm install
+
+# 開発サーバーの起動 (ポート18080)
+npm run dev -- --port 18080
+```
+
+---
+
+## 使用技術
+
+- Vue 3
+- TypeScript
+- Vite
+- Pinia (状態管理)
+- LocalStorage (データの永続化)
