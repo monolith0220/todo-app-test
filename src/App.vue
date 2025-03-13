@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useTodoStore } from "./stores/todoStore";
+import type { Todo } from "./stores/todoStore";
 
 const todoStore = useTodoStore();
 const newTodo = ref("");
@@ -34,7 +35,17 @@ const toggleSelectAll = () => {
 	if (allSelected.value) {
 		selectedTodos.value = [];
 	} else {
-		selectedTodos.value = todoStore.todos.map((todo) => todo.id);
+		selectedTodos.value = todoStore.todos.map((todo: Todo) => todo.id);
+	}
+};
+
+// todoの任意選択
+const handleCheckboxChange = (event: Event, id: number) => {
+	const target = event.target as HTMLInputElement;
+	if (target.checked) {
+		selectedTodos.value.push(id);
+	} else {
+		selectedTodos.value = selectedTodos.value.filter((todoId) => todoId !== id);
 	}
 };
 </script>
@@ -58,11 +69,7 @@ const toggleSelectAll = () => {
 				<input
 					type="checkbox"
 					:checked="selectedTodos.includes(todo.id)"
-					@change="
-						$event.target.checked
-							? selectedTodos.push(todo.id)
-							: (selectedTodos = selectedTodos.filter((id) => id !== todo.id))
-					"
+					@change="handleCheckboxChange($event, todo.id)"
 				/>
 				<span>
 					{{ todo.text }}
